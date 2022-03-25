@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { MantineProvider, ColorSchemeProvider, ColorScheme } from "@mantine/core";
+import { MantineProvider, ColorSchemeProvider, ColorScheme, MantineThemeOverride } from "@mantine/core";
+
+const theme: MantineThemeOverride = {
+  fontFamily: "Karla", // Poppins, Roboto, Varela, Karla, Manrope
+  white: "#ECF6FD",
+};
 
 export default function ThemeProvider({ children }: any) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
@@ -8,7 +13,7 @@ export default function ThemeProvider({ children }: any) {
 
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-      <MantineProvider theme={{ colorScheme, white: "#d9f1ff" }}>{children}</MantineProvider>
+      <MantineProvider theme={{ colorScheme, ...theme }}>{children}</MantineProvider>
     </ColorSchemeProvider>
   );
 }
