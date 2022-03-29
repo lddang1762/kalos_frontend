@@ -5,9 +5,7 @@ import {
   Button,
   Header,
   Container,
-  Box,
   Text,
-  Image,
   Modal,
   Group,
   useMantineColorScheme,
@@ -16,7 +14,6 @@ import {
 } from "@mantine/core";
 import { Link as LinkIcon } from "tabler-icons-react";
 import Logo from "../Logo";
-import logo from "../../logo.svg";
 
 const navStyle = (theme: MantineTheme): CSSObject => ({
   display: "flex",
@@ -30,21 +27,6 @@ const styles = (theme: MantineTheme): CSSObject => ({
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
-});
-
-const logoStyle = (theme: MantineTheme): CSSObject => ({
-  display: "flex",
-  alignItems: "center",
-  textDecoration: "none",
-  letterSpacing: 4,
-  color: theme.white,
-  ":hover": {
-    // opacity: 1,
-    // transform: "translateX(0)",
-    // transition: "opacity 1s ease-in-out, transform 1s ease-out",
-  },
-  // transform: "translateX(-100px)",
-  // opacity: "0",
 });
 
 const linkStyle = (theme: MantineTheme): CSSObject => ({
@@ -93,11 +75,11 @@ export default function Navbar() {
             Stake
           </Text>
         </Group>
-        <Group spacing="lg" noWrap>
-          <ActionIcon radius={"lg"} variant="outline" color={""}>
+        <Group spacing="md" noWrap>
+          <ActionIcon radius="lg" variant="light">
             <LinkIcon size={20} />
           </ActionIcon>
-          <Button size="md" onClick={() => setOpened(true)}>
+          <Button size="md" variant="light" onClick={() => setOpened(true)}>
             Connect
           </Button>
         </Group>

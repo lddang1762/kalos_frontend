@@ -4,6 +4,7 @@ import { MantineProvider, ColorSchemeProvider, ColorScheme, MantineThemeOverride
 const theme: MantineThemeOverride = {
   fontFamily: "Karla", // Poppins, Roboto, Varela, Karla, Manrope
   white: "#ECF6FD",
+  headings: { fontFamily: "Karla" },
 };
 
 export default function ThemeProvider({ children }: any) {
