@@ -1,8 +1,8 @@
 import React, { useLayoutEffect, useState } from "react";
 import { AppShell, Transition, MantineTransition, CSSObject, MantineTheme } from "@mantine/core";
 
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "./Navbar/Navbar";
+import Footer from "./Footer/Footer";
 
 const styles = (theme: MantineTheme): CSSObject => ({
   backgroundColor: theme.colorScheme === "light" ? theme.white : theme.colors.dark[4],
@@ -23,7 +23,7 @@ export default function PageWrapper({ children }: any) {
   }, []);
 
   return (
-    <Transition mounted={loaded} transition={puffIn} duration={1000} timingFunction="ease-in-out">
+    <Transition mounted={loaded} transition={puffIn} duration={1500} timingFunction="ease">
       {(style) => (
         <>
           <AppShell header={<Navbar />} padding="md" sx={styles}>

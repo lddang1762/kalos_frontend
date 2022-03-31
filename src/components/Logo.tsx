@@ -1,7 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { Box, Text, Image, Transition, MantineTransition, CSSObject, MantineTheme } from "@mantine/core";
-import { useWindowEvent } from "@mantine/hooks";
 import logo from "../logo.svg";
 
 const logoStyle = (theme: MantineTheme): CSSObject => ({
@@ -13,9 +12,9 @@ const logoStyle = (theme: MantineTheme): CSSObject => ({
 });
 
 const labelStyle = (): CSSObject => ({
-  transition: "transform 0.3s ease-out",
+  transition: "transform 0.2s ease-out",
   ":hover": {
-    transform: "translateX(3px)",
+    transform: "translateX(4px)",
   },
 });
 
