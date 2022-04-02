@@ -15,7 +15,6 @@ import {
   MantineTransition,
 } from "@mantine/core";
 import { Link as LinkIcon } from "tabler-icons-react";
-import Logo from "../../Logo";
 import logo from "../../../logo.svg";
 
 const useStyles = createStyles((theme) => ({
@@ -56,6 +55,13 @@ const useStyles = createStyles((theme) => ({
       transform: "scaleX(1.1)",
     },
   },
+  chainIcon: { color: theme.colors.primary[5] },
+  chain: {
+    backgroundColor: "white",
+    color: theme.colors.primary[5],
+    boxShadow: `0px 3px 0 0 rgb(0 0 0 / 10%)`,
+  },
+  connectButton: { borderRadius: theme.radius.xl },
 }));
 
 const logoTransition: MantineTransition = {
@@ -120,10 +126,10 @@ export default function Navbar() {
               </Text>
             </Group>
             <Group spacing="md" style={styles.connector} noWrap>
-              <ActionIcon radius="lg" variant="light">
-                <LinkIcon size={20} />
+              <ActionIcon radius="lg" className={classes.chain}>
+                <LinkIcon size={20} className={classes.chainIcon} />
               </ActionIcon>
-              <Button variant="light" size="md" onClick={() => setOpened(true)}>
+              <Button variant="white" size="md" className={classes.connectButton} onClick={() => setOpened(true)}>
                 Connect
               </Button>
             </Group>

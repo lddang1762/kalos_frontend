@@ -3,20 +3,20 @@ import { MantineProvider, ColorSchemeProvider, ColorScheme, MantineThemeOverride
 
 const theme: MantineThemeOverride = {
   fontFamily: "Karla", // Poppins, Roboto, Varela, Karla, Manrope
-  white: "#DCEEFB",
+  white: "#ECF6FD",
   headings: { fontFamily: "Karla" },
   colors: {
     primary: [
-      "#003E6B",
-      "#0A558C",
-      "#0F609B",
-      "#186FAF",
-      "#2680C2",
-      "#4098D7",
-      "#62B0E8",
-      "#84C5F4",
-      "#B6E0FE",
-      "#DCEEFB",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
     ],
     accent: [
       "#F0B429",
@@ -31,6 +31,9 @@ const theme: MantineThemeOverride = {
       "#5CCCD6",
     ],
   },
+  primaryColor: "primary",
+  radius: { xs: 4, sm: 8, md: 12, lg: 16, xl: 20 },
+  defaultRadius: "md",
 };
 
 export default function ThemeProvider({ children }: any) {
@@ -40,7 +43,24 @@ export default function ThemeProvider({ children }: any) {
 
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-      <MantineProvider theme={{ colorScheme, ...theme }}>{children}</MantineProvider>
+      <MantineProvider
+        styles={{
+          Button: (theme, params) => ({
+            root: {
+              height: 40,
+              padding: "0 30px",
+              color: theme.colors[params.color || theme.colors.primary[5]],
+              boxShadow: `0px 3px 0 0 rgb(0 0 0 / 10%)`,
+              "&:not(:disabled):active": {
+                transform: "translateY(3px)",
+              },
+            },
+          }),
+        }}
+        theme={{ colorScheme, ...theme }}
+      >
+        {children}
+      </MantineProvider>
     </ColorSchemeProvider>
   );
 }
