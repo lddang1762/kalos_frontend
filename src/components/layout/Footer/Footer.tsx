@@ -32,9 +32,6 @@ const useStyles = createStyles((theme) => ({
   root: {
     marginRight: "auto",
   },
-  input: {
-    backgroundColor: theme.colors.dark[1],
-  },
   col: {
     display: "flex",
     flexDirection: "column",

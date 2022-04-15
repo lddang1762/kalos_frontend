@@ -1,46 +1,64 @@
 import React, { useState } from "react";
-import { Container, Text, Button, Card, Collapse, Box } from "@mantine/core";
+import { Container, Group, Text, Center, Title, Switch, SegmentedControl, TextInput } from "@mantine/core";
+import { Search } from "tabler-icons-react";
 import Page from "../../components/layout/Page";
+import StyledContainer from "../../components/layout/StyledContainer";
+import PoolCard from "../../components/Trade/PoolCard";
 
 export default function Trade() {
-  const [active, setActive] = useState(false);
+  const [selected, setSelected] = useState(-1);
+
+  const handleOpen = (id) => {
+    selected === id ? setSelected(-1) : setSelected(id);
+  };
+
+  const pools = ["BTC-USDT", "ETH-USDT", "ETH-BTC", "AVAX-USDT", "LUNA-USDT", "SOL-USDT"];
   return (
     <Page>
-      <Card
-        sx={{
-          backgroundColor: "white",
-          width: "320px",
-          minHeight: "370px",
-          margin: "auto",
-          borderRadius: "25px",
-          boxShadow: `0px 5px 0 0 rgb(0 0 0 / 10%)`,
-        }}
-      >
-        <Card.Section>
-          <Box
-            sx={{
-              color: "white",
-              fontSize: "18px",
-              backgroundColor: "#5185EC",
-              height: "25px",
-              padding: "15px",
-              textAlign: "center",
-              letterSpacing: "0.07rem",
-              marginBottom: "12px",
-            }}
-          >
-            <Text size="xl">ETH-USDT Pool</Text>
-          </Box>
-        </Card.Section>
-        <Container fluid sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
-          <Text>asdfasdfasdfasdfasd</Text>
-          <Collapse in={active}>asdf</Collapse>
+      <StyledContainer fluid pl="55px" mb={20} ml={32} style={{ position: "relative" }}>
+        <Center
+          sx={{
+            color: "#5185EC",
+            backgroundColor: "white",
+            borderRadius: "100%",
+            border: "4px solid",
+            boxShadow: "0px 7px 4px -2px rgb(0 0 0 / 10%)",
+            width: 64,
+            height: 64,
+            position: "absolute",
+            left: -34,
+            top: "calc(50% - 34px)",
+          }}
+        >
+          <Title order={1}>1</Title>
+        </Center>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation
+        </Text>
+      </StyledContainer>
 
-          <Button sx={{ marginTop: "220px" }} onClick={() => setActive(!active)}>
-            Open
-          </Button>
-        </Container>
-      </Card>
+      <Container fluid px={0} mb="50px" sx={{ display: "flex" }}>
+        <Switch size="md" label="Staked Only" mr="auto" />
+        <SegmentedControl
+          mx={20}
+          size="md"
+          data={[
+            { label: "Popular", value: "pop" },
+            { label: "APR", value: "apr" },
+            { label: "TVL", value: "tvl" },
+          ]}
+          sx={{ backgroundColor: "white", height: "fit-content" }}
+        />
+        <TextInput size="md" label="Search" placeholder="Search" icon={<Search />}></TextInput>
+      </Container>
+
+      <Group position="center" align="flex-start" sx={{ gap: "50px 25px" }}>
+        {pools.map((pool, id) => (
+          <PoolCard key={pool} title={pool} active={id === selected} handleOpen={() => handleOpen(id)} />
+        ))}
+      </Group>
     </Page>
   );
 }

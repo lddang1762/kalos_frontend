@@ -10,7 +10,6 @@ const styles = (theme: MantineTheme): CSSObject => ({
 });
 
 export default function StyledContainer({ children, ...props }: ContainerProps) {
-  console.log(props);
   return (
     <Container sx={styles} {...props}>
       {children}

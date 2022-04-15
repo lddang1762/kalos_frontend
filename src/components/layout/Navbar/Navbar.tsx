@@ -23,6 +23,7 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     backgroundColor: theme.colors.primary[3],
     letterSpacing: 1,
+    border: "none",
   },
   logo: { display: "flex", alignItems: "center", textDecoration: "none", letterSpacing: 4, color: theme.white },
   label: {
