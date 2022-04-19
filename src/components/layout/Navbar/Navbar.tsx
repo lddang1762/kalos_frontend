@@ -1,12 +1,12 @@
 import React, { useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useModals } from "@mantine/modals";
 import {
   ActionIcon,
   Button,
   Header,
   Container,
   Text,
-  Modal,
   Group,
   createStyles,
   Box,
@@ -89,8 +89,11 @@ const connectorTransition: MantineTransition = {
 export default function Navbar() {
   const duration = 1500;
   const { classes } = useStyles();
+  const modals = useModals();
+  const openContextModal = () => {
+    modals.openContextModal("login", { title: "Login", innerProps: {}, centered: true });
+  };
 
-  const [opened, setOpened] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useLayoutEffect(() => {
@@ -130,13 +133,10 @@ export default function Navbar() {
               <ActionIcon radius="lg" className={classes.chain}>
                 <LinkIcon size={20} className={classes.chainIcon} />
               </ActionIcon>
-              <Button variant="white" size="md" className={classes.connectButton} onClick={() => setOpened(true)}>
-                Connect
+              <Button variant="white" size="md" className={classes.connectButton} onClick={openContextModal}>
+                Log In
               </Button>
             </Group>
-            <Modal opened={opened} onClose={() => setOpened(false)} title="Test" centered>
-              <Text>Hello</Text>
-            </Modal>
           </Container>
         )}
       </GroupedTransition>

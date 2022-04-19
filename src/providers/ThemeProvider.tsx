@@ -37,7 +37,7 @@ const theme: MantineThemeOverride = {
   defaultRadius: "md",
 };
 
-export default function ThemeProvider({ children }: any) {
+export default function ThemeProvider({ children }) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
