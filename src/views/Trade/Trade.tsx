@@ -1,18 +1,39 @@
-import React, { useState } from "react";
-import { Container, Group, Text, Center, Title, Switch, SegmentedControl, TextInput } from "@mantine/core";
-import { Search } from "tabler-icons-react";
+import React, { useState, useMemo } from "react";
+import { Box, Container, Group, Text, Center, Title, Switch, SegmentedControl, TextInput } from "@mantine/core";
+import { useDebouncedValue } from "@mantine/hooks";
+import { Search, Flame, Percentage, Businessplan, Pool } from "tabler-icons-react";
 import Page from "../../components/layout/Page";
 import StyledContainer from "../../components/layout/StyledContainer";
 import PoolCard from "../../components/Trade/PoolCard";
 
+// TODO: use live data
+const pools = ["BTC-USDT", "ETH-USDT", "ETH-BTC", "AVAX-USDT", "LUNA-USDT", "SOL-USDT"];
+
 export default function Trade() {
   const [selected, setSelected] = useState(-1);
+  const [depositing, setDepositing] = useState(false);
+  const [sortOption, setSortOption] = useState("pop");
+  const [query, setQuery] = useState("");
+  const [debouncedQuery] = useDebouncedValue(query, 200);
+
+  // const [stakedOnly, setStakedOnly] = useUserFarmStakedOnly(isActive)
 
   const handleOpen = (id) => {
     selected === id ? setSelected(-1) : setSelected(id);
   };
 
-  const pools = ["BTC-USDT", "ETH-USDT", "ETH-BTC", "AVAX-USDT", "LUNA-USDT", "SOL-USDT"];
+  const handleDeposit = () => {
+    setDepositing(true);
+  };
+
+  const handleChangeQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.currentTarget.value.toLowerCase());
+  };
+
+  const filteredPools = useMemo(() => {
+    return pools.filter((pool) => pool.toLowerCase().includes(debouncedQuery));
+  }, [debouncedQuery]);
+
   return (
     <Page>
       <StyledContainer fluid pl="55px" mb={20} ml={32} style={{ position: "relative" }}>
@@ -44,19 +65,57 @@ export default function Trade() {
         <SegmentedControl
           mx={20}
           size="md"
+          color="primary"
           data={[
-            { label: "Popular", value: "pop" },
-            { label: "APR", value: "apr" },
-            { label: "TVL", value: "tvl" },
+            {
+              label: (
+                <Center>
+                  <Flame size={16} />
+                  <Box ml={4}>Popular</Box>
+                </Center>
+              ),
+              value: "pop",
+            },
+            {
+              label: (
+                <Center>
+                  <Percentage size={16} />
+                  <Box ml={4}>APR</Box>
+                </Center>
+              ),
+              value: "apr",
+            },
+            {
+              label: (
+                <Center>
+                  <Businessplan size={16} />
+                  <Box ml={4}>TVL</Box>
+                </Center>
+              ),
+              value: "tvl",
+            },
           ]}
-          sx={{ backgroundColor: "white", height: "fit-content" }}
+          sx={{ backgroundColor: "white", height: "fit-content", alignSelf: "flex-end" }}
         />
-        <TextInput size="md" label="Search" placeholder="Search" icon={<Search />}></TextInput>
+        <TextInput
+          styles={{ input: { backgroundColor: "white", border: "none" } }}
+          size="md"
+          placeholder="Search"
+          icon={<Search />}
+          onChange={(e) => handleChangeQuery(e)}
+        />
       </Container>
 
       <Group position="center" align="flex-start" sx={{ gap: "50px 25px" }}>
-        {pools.map((pool, id) => (
-          <PoolCard key={pool} title={pool} active={id === selected} handleOpen={() => handleOpen(id)} />
+        {filteredPools.map((pool, id) => (
+          <PoolCard
+            key={pool}
+            title={pool}
+            selected={id === selected}
+            active={id === selected && depositing}
+            handleOpen={() => handleOpen(id)}
+            handleDeposit={() => handleDeposit()}
+          />
         ))}
       </Group>
     </Page>

@@ -1,10 +1,22 @@
 import React, { useState, useMemo } from "react";
-import { Container, Text, Image, Button, Card, Collapse, Box, RingProgress, Center, Title } from "@mantine/core";
+import {
+  Container,
+  Text,
+  Image,
+  Button,
+  Card,
+  Collapse,
+  Box,
+  RingProgress,
+  Center,
+  Title,
+  createStyles,
+} from "@mantine/core";
 import { ChevronLeft, ChevronRight, Star } from "tabler-icons-react";
 import btcIcon from "../../assets/crypto/bitcoin-btc-logo.svg";
 import ethIcon from "../../assets/crypto/ethereum-eth-logo.svg";
 
-export default function PoolCard({ active, handleOpen, title }) {
+export default function PoolCard({ active, selected, title, handleOpen, handleDeposit }) {
   // TODO: replace with actual data
   const [configRatio, setRatio] = useState(6);
   const [favorited, setFavorited] = useState(false);
@@ -28,6 +40,11 @@ export default function PoolCard({ active, handleOpen, title }) {
   const handleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
     setFavorited((prev) => !prev);
+  };
+
+  const onDepositClicked = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    handleDeposit();
   };
 
   return (
@@ -75,7 +92,7 @@ export default function PoolCard({ active, handleOpen, title }) {
               size={25}
               color={`${favorited ? "orange" : "white"}`}
               fill={`${favorited ? "orange" : "white"}`}
-              onClick={(e) => handleFavorite(e)}
+              onClick={handleFavorite}
             />
           </Box>
         </Box>
@@ -121,7 +138,7 @@ export default function PoolCard({ active, handleOpen, title }) {
           </Box>
         </Title>
 
-        <Collapse in={active}>
+        <Collapse in={selected}>
           <Text>{`TVL: $${TVL}`}</Text>
         </Collapse>
 
@@ -134,18 +151,17 @@ export default function PoolCard({ active, handleOpen, title }) {
           ]}
         />
 
-        <Collapse in={active} animateOpacity={false}>
+        <Collapse in={selected} animateOpacity={false}>
           <Button
             radius="sm"
             px="40px"
-            onClick={(e) => e.stopPropagation()}
+            onClick={onDepositClicked}
             sx={{
-              backgroundColor: "#ffbb33",
-              // boxShadow: "0px 3px 0px #E9A732",
+              backgroundColor: "#ffa634",
               ":hover": { backgroundColor: "#ffbb33" },
             }}
           >
-            Open
+            Deposit
           </Button>
         </Collapse>
       </Container>
