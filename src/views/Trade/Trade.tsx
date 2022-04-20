@@ -1,15 +1,55 @@
 import React, { useState, useMemo } from "react";
-import { Box, Container, Group, Text, Center, Title, Switch, SegmentedControl, TextInput } from "@mantine/core";
+import {
+  Box,
+  Container,
+  Group,
+  Text,
+  Center,
+  Title,
+  Switch,
+  SegmentedControl,
+  TextInput,
+  createStyles,
+} from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
-import { Search, Flame, Percentage, Businessplan, Pool } from "tabler-icons-react";
+import { Search, Flame, Percentage, Businessplan } from "tabler-icons-react";
 import Page from "../../components/layout/Page";
 import StyledContainer from "../../components/layout/StyledContainer";
 import PoolCard from "../../components/Trade/PoolCard";
+
+const useStyles = createStyles((theme) => ({
+  circle: {
+    color: theme.colors.primary,
+    backgroundColor: theme.white,
+    borderRadius: "100%",
+    border: "4px solid",
+    boxShadow: "0px 7px 4px -2px rgb(0 0 0 / 10%)",
+    width: 64,
+    height: 64,
+    position: "absolute",
+    left: -34,
+    top: "calc(50% - 34px)",
+  },
+  segment: {
+    backgroundColor: theme.white,
+    height: "fit-content",
+    alignSelf: "flex-end",
+    color: "white",
+  },
+  segmentLabel: {
+    color: "white !important",
+  },
+  input: {
+    backgroundColor: theme.white,
+    border: "none",
+  },
+}));
 
 // TODO: use live data
 const pools = ["BTC-USDT", "ETH-USDT", "ETH-BTC", "AVAX-USDT", "LUNA-USDT", "SOL-USDT"];
 
 export default function Trade() {
+  const { classes } = useStyles();
   const [selected, setSelected] = useState(-1);
   const [depositing, setDepositing] = useState(false);
   const [sortOption, setSortOption] = useState("pop");
@@ -37,20 +77,7 @@ export default function Trade() {
   return (
     <Page>
       <StyledContainer fluid pl="55px" mb={20} ml={32} style={{ position: "relative" }}>
-        <Center
-          sx={{
-            color: "#5185EC",
-            backgroundColor: "white",
-            borderRadius: "100%",
-            border: "4px solid",
-            boxShadow: "0px 7px 4px -2px rgb(0 0 0 / 10%)",
-            width: 64,
-            height: 64,
-            position: "absolute",
-            left: -34,
-            top: "calc(50% - 34px)",
-          }}
-        >
+        <Center className={classes.circle}>
           <Title order={1}>1</Title>
         </Center>
         <Text>
@@ -63,6 +90,7 @@ export default function Trade() {
       <Container fluid px={0} mb="50px" sx={{ display: "flex" }}>
         <Switch size="md" label="Staked Only" mr="auto" />
         <SegmentedControl
+          classNames={{ root: classes.segment, labelActive: classes.segmentLabel }}
           mx={20}
           size="md"
           color="primary"
@@ -95,10 +123,9 @@ export default function Trade() {
               value: "tvl",
             },
           ]}
-          sx={{ backgroundColor: "white", height: "fit-content", alignSelf: "flex-end" }}
         />
         <TextInput
-          styles={{ input: { backgroundColor: "white", border: "none" } }}
+          classNames={{ input: classes.input }}
           size="md"
           placeholder="Search"
           icon={<Search />}

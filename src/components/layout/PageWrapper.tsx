@@ -5,7 +5,7 @@ import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 
 const styles = (theme: MantineTheme): CSSObject => ({
-  backgroundColor: theme.colorScheme === "light" ? theme.white : theme.colors.dark[4],
+  backgroundColor: theme.colors.paper,
   minHeight: "calc(100vh)",
 });
 

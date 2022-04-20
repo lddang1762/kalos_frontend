@@ -4,7 +4,8 @@ import { Container, ContainerProps, MantineTheme, CSSObject } from "@mantine/cor
 const styles = (theme: MantineTheme): CSSObject => ({
   padding: theme.spacing.xl,
   margin: "auto", //theme.spacing.sm,
-  backgroundColor: "white",
+  color: theme.colors.dark[9],
+  backgroundColor: theme.white,
   borderRadius: theme.radius.xl,
   boxShadow: "0px 7px 4px -2px rgb(0 0 0 / 10%)",
 });

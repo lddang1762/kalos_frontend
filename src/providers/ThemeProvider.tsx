@@ -1,12 +1,75 @@
 import { useState } from "react";
 import { MantineProvider, ColorSchemeProvider, ColorScheme, MantineThemeOverride } from "@mantine/core";
+import { useLocalStorage } from "@mantine/hooks";
 
-const theme: MantineThemeOverride = {
+const lightTheme: MantineThemeOverride = {
   fontFamily: "Karla", // Poppins, Roboto, Varela, Karla, Manrope
-  white: "#ECF6FD",
   headings: { fontFamily: "Karla" },
   fontSizes: { xs: 12, sm: 14, md: 16, lg: 20, xl: 24 },
   colors: {
+    primary: [
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+      "#5185EC",
+    ],
+    accent: [
+      "#F0B429",
+      "#F0B429",
+      "#F0B429",
+      "#F0B429",
+      "#F0B429",
+      "#F0B429",
+      "#F0B429",
+      "#F0B429",
+      "#F0B429",
+      "#F0B429",
+    ],
+    light: [
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+    ],
+    paper: ["#ECF6FD"],
+  },
+  primaryColor: "primary",
+  radius: { xs: 4, sm: 8, md: 12, lg: 16, xl: 20 },
+  defaultRadius: "md",
+};
+
+const darkTheme: MantineThemeOverride = {
+  colorScheme: "dark",
+  fontFamily: "Karla", // Poppins, Roboto, Varela, Karla, Manrope
+  headings: { fontFamily: "Karla" },
+  fontSizes: { xs: 12, sm: 14, md: 16, lg: 20, xl: 24 },
+  white: "#434F65",
+  colors: {
+    dark: [
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+      "#ECF6FD",
+    ],
+
     primary: [
       "#5185EC",
       "#5185EC",
@@ -31,6 +94,19 @@ const theme: MantineThemeOverride = {
       "#5CCCD6",
       "#5CCCD6",
     ],
+    light: [
+      "#576277",
+      "#576277",
+      "#576277",
+      "#576277",
+      "#576277",
+      "#576277",
+      "#576277",
+      "#576277",
+      "#576277",
+      "#576277",
+    ],
+    paper: ["#263146"],
   },
   primaryColor: "primary",
   radius: { xs: 4, sm: 8, md: 12, lg: 16, xl: 20 },
@@ -38,7 +114,11 @@ const theme: MantineThemeOverride = {
 };
 
 export default function ThemeProvider({ children }) {
-  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: "mantine-color-scheme",
+    defaultValue: "light",
+  });
+
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
@@ -56,12 +136,24 @@ export default function ThemeProvider({ children }) {
                 transform: "translateY(3px)",
               },
             },
+            white: {
+              backgroundColor: "white",
+            },
           }),
           Switch: (theme, params) => ({
-            input: { backgroundColor: theme.colors.dark[0], "&:hover": { cursor: "pointer" } },
+            input: {
+              backgroundColor: "#829DB1",
+              border: "none",
+              "&:hover": { cursor: "pointer" },
+              "::before": {
+                backgroundColor: "white",
+                borderColor: "white",
+              },
+              ":checked::before": { borderColor: "white" },
+            },
           }),
         }}
-        theme={{ colorScheme, ...theme }}
+        theme={colorScheme === "dark" ? darkTheme : lightTheme}
       >
         {children}
       </MantineProvider>

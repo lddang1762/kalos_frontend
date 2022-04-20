@@ -25,7 +25,7 @@ const useStyles = createStyles((theme) => ({
     letterSpacing: 1,
     border: "none",
   },
-  logo: { display: "flex", alignItems: "center", textDecoration: "none", letterSpacing: 4, color: theme.white },
+  logo: { display: "flex", alignItems: "center", textDecoration: "none", letterSpacing: 4, color: "white" },
   label: {
     transition: "transform 0.2s ease-out",
     "&:hover": {
@@ -39,7 +39,7 @@ const useStyles = createStyles((theme) => ({
     width: "100%",
   },
   link: {
-    color: theme.white,
+    color: "white",
     position: "relative",
     "&:after": {
       content: "''",
@@ -49,14 +49,14 @@ const useStyles = createStyles((theme) => ({
       height: 2,
       bottom: 0,
       left: 0,
-      backgroundColor: theme.white,
+      backgroundColor: "white",
       transition: "transform 0.2s ease-out",
     },
     "&:hover:after": {
       transform: "scaleX(1.1)",
     },
   },
-  chainIcon: { color: theme.colors.primary[5] },
+  chainIcon: { color: theme.colors.primary },
   chain: {
     backgroundColor: "white",
     color: theme.colors.primary[5],
