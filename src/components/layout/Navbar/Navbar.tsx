@@ -21,7 +21,7 @@ const useStyles = createStyles((theme) => ({
   header: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: theme.colors.primary[3],
+    backgroundColor: theme.colors.primary,
     letterSpacing: 1,
     border: "none",
   },
@@ -59,7 +59,7 @@ const useStyles = createStyles((theme) => ({
   chainIcon: { color: theme.colors.primary },
   chain: {
     backgroundColor: "white",
-    color: theme.colors.primary[5],
+    color: theme.colors.primary,
     boxShadow: `0px 3px 0 0 rgb(0 0 0 / 10%)`,
   },
   connectButton: { borderRadius: theme.radius.xl },

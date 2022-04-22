@@ -13,18 +13,18 @@ import {
   createStyles,
   useMantineColorScheme,
 } from "@mantine/core";
+
 import FooterItems from "./FooterItems";
 import sunIco from "../../../assets/Sun.svg";
 import moonIco from "../../../assets/Moon.svg";
-import facebookIco from "../../../assets/Facebook.svg";
-import twitterIco from "../../../assets/Twitter.svg";
-import githubIco from "../../../assets/Github.svg";
-import telegramIco from "../../../assets/Telegram.svg";
 
+import { ReactComponent as FacebookSVG } from "../../../assets/Facebook.svg";
+import { ReactComponent as TwitterSVG } from "../../../assets/Twitter.svg";
+import { ReactComponent as GithubSVG } from "../../../assets/Github.svg";
 import { ReactComponent as TelegramSVG } from "../../../assets/Telegram.svg";
 
-const icons = [facebookIco, twitterIco, githubIco, telegramIco];
-console.log(facebookIco);
+const icons = [FacebookSVG, TwitterSVG, GithubSVG, TelegramSVG];
+
 const styles = (theme: MantineTheme): CSSObject => ({
   backgroundColor: theme.white,
   minHeight: 200,
@@ -72,7 +72,7 @@ const useStyles = createStyles((theme) => ({
     color: theme.colors.dark[9],
   },
   svg: {
-    fill: "red",
+    fill: theme.colors.dark[9],
   },
 }));
 
@@ -116,14 +116,13 @@ export default function Footer() {
         <Divider mt="lg" mb="sm" />
         <Group>
           <Switch size="md" classNames={classes} onChange={() => handleToggle()} checked={isDark} />
-          {icons.map((icon) => {
+          {icons.map((Icon, id) => {
             return (
-              <Anchor key={icon}>
-                <Image src={icon} height={24} width={24} sx={{ fill: "red" }} />
+              <Anchor key={id}>
+                <Icon className={classes.svg} />
               </Anchor>
             );
           })}
-          {/* <TelegramSVG fill="red" /> */}
         </Group>
       </Container>
     </Container>

@@ -37,6 +37,7 @@ const useStyles = createStyles((theme) => ({
     color: "white",
   },
   segmentLabel: {
+    backgroundColor: theme.colors.primary,
     color: "white !important",
   },
   input: {
