@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Container, Text, Button, Card, Collapse, Box, RingProgress, Title, createStyles } from "@mantine/core";
+import { Container, Text, Button, Collapse, Box, RingProgress, Title, createStyles } from "@mantine/core";
 import StyledCard from "../layout/StyledCard";
 import { ChevronLeft, ChevronRight, Star } from "tabler-icons-react";
 import CurrencyIcon from "../CurrencyIcon";
@@ -9,82 +9,33 @@ const useStyles = createStyles((theme) => ({
   favorite: {
     border: "none",
     backgroundColor: "transparent",
-    cursor: "pointer",
     display: " inherit",
     position: "absolute",
     top: 15,
     right: 26,
   },
-  arrow: {
-    border: "none",
-    backgroundColor: "transparent",
-    cursor: "pointer",
-    display: " inherit",
-  },
 }));
 
-export default function PoolCard({ active, selected, title, handleOpen, handleDeposit }) {
+export default function PoolInputCard({ title = "Placeholder", handleClose }) {
   const { classes } = useStyles();
-  // TODO: replace with actual data
   const [configRatio, setRatio] = useState(6);
   const [favorited, setFavorited] = useState(false);
   const APR = useMemo(() => (Math.random() * 100).toFixed(2), []);
   const TVL = useMemo(() => (Math.random() * 1000 * (Math.random() * 1000)).toFixed(2), []);
 
-  const handleRatioDecrease = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (configRatio > 1) {
-      setRatio((prev) => prev - 1);
-    }
-  };
-
-  const handleRatioIncrease = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (configRatio < 9) {
-      setRatio((prev) => prev + 1);
-    }
-  };
-
-  const handleFavorite = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setFavorited((prev) => !prev);
-  };
-
-  const onDepositClicked = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    handleDeposit();
-  };
-
   const HeaderContent = (
     <>
       <Text size="lg">{`${title} Pool`}</Text>
       <Box component="button" className={classes.favorite}>
-        <Star
-          size={25}
-          color={`${favorited ? "orange" : "white"}`}
-          fill={`${favorited ? "orange" : "white"}`}
-          onClick={handleFavorite}
-        />
+        <Star size={25} color={`${favorited ? "orange" : "white"}`} fill={`${favorited ? "orange" : "white"}`} />
       </Box>
     </>
   );
 
   return (
-    <StyledCard
-      px={0}
-      header={HeaderContent}
-      onClick={() => handleOpen()}
-      sx={{
-        "&:hover": {
-          boxShadow: `0px 0px 15px 5px #5185ec80`,
-        },
-      }}
-    >
+    <StyledCard px={0} header={HeaderContent} sx={{ width: "100%" }}>
       <Container className={classes.flex} px={0} fluid sx={{ flexDirection: "column" }}>
         <Container className={classes.flex} mb={10} px={0} fluid>
-          <Box className={classes.arrow} component="button" px={0}>
-            <ChevronLeft size={40} color="#5185EC" onClick={(e) => handleRatioDecrease(e)} />
-          </Box>
           <CurrencyIcon />
           <Title order={2} mx={10} sx={{ width: 50 }}>
             <Box component="span" sx={{ color: "#12b886" }}>
@@ -96,10 +47,6 @@ export default function PoolCard({ active, selected, title, handleOpen, handleDe
             </Box>
           </Title>
           <CurrencyIcon />
-
-          <Box className={classes.arrow} component="button" px={0}>
-            <ChevronRight size={40} color="#5185EC" onClick={(e) => handleRatioIncrease(e)} />
-          </Box>
         </Container>
 
         <Title order={3}>
@@ -109,7 +56,7 @@ export default function PoolCard({ active, selected, title, handleOpen, handleDe
           </Box>
         </Title>
 
-        <Collapse in={selected}>
+        <Collapse in={true}>
           <Text>{`TVL: $${TVL}`}</Text>
         </Collapse>
 
@@ -123,9 +70,9 @@ export default function PoolCard({ active, selected, title, handleOpen, handleDe
           ]}
         />
 
-        <Collapse in={selected} animateOpacity={false}>
-          <Button color="accent" radius="sm" px="40px" onClick={onDepositClicked}>
-            Deposit
+        <Collapse in={true} animateOpacity={false}>
+          <Button color="red" radius="sm" px="40px" onClick={handleClose}>
+            Cancel
           </Button>
         </Collapse>
       </Container>

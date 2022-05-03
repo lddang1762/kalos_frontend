@@ -8,9 +8,6 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.white,
     borderRadius: "25px",
     boxShadow: `0px 5px 0 0 rgb(0 0 0 / 8%)`,
-    "&:hover": {
-      boxShadow: `0px 0px 15px 5px #5185ec80`,
-    },
   },
   cardHeader: {
     color: "white",

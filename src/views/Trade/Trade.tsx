@@ -16,6 +16,7 @@ import { Search, Flame, Percentage, Businessplan } from "tabler-icons-react";
 import Page from "../../components/layout/Page";
 import StyledContainer from "../../components/layout/StyledContainer";
 import PoolCard from "../../components/Trade/PoolCard";
+import PoolInputModal from "../../components/Modals/PoolInputModal";
 
 const useStyles = createStyles((theme) => ({
   circle: {
@@ -51,6 +52,8 @@ const pools = ["BTC-USDT", "ETH-USDT", "ETH-BTC", "AVAX-USDT", "LUNA-USDT", "SOL
 
 export default function Trade() {
   const { classes } = useStyles();
+
+  const [opened, setOpened] = useState(false);
   const [selected, setSelected] = useState(-1);
   const [depositing, setDepositing] = useState(false);
   const [sortOption, setSortOption] = useState("pop");
@@ -65,6 +68,7 @@ export default function Trade() {
 
   const handleDeposit = () => {
     setDepositing(true);
+    setOpened(true);
   };
 
   const handleChangeQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,12 +144,13 @@ export default function Trade() {
             key={pool}
             title={pool}
             selected={id === selected}
-            active={id === selected && depositing}
+            active={false}
             handleOpen={() => handleOpen(id)}
             handleDeposit={() => handleDeposit()}
           />
         ))}
       </Group>
+      <PoolInputModal opened={opened} onClose={() => setOpened(false)} />
     </Page>
   );
 }
