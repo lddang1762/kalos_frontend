@@ -17,6 +17,8 @@ import {
 import { Link as LinkIcon } from "tabler-icons-react";
 import logo from "../../../logo.svg";
 
+import { navItems } from "./NavItems";
+
 const useStyles = createStyles((theme) => ({
   header: {
     display: "flex",
@@ -119,15 +121,13 @@ export default function Navbar() {
               </Text>
             </Box>
             <Group spacing={40} style={styles.items} noWrap>
-              <Text component={Link} to="/dashboard" size="lg" className={classes.link}>
-                Dashboard
-              </Text>
-              <Text component={Link} to="/trade" size="lg" className={classes.link}>
-                Trade
-              </Text>
-              <Text component={Link} to="/stake" size="lg" className={classes.link}>
-                Stake
-              </Text>
+              {navItems.map((navItem) => {
+                return (
+                  <Text key={navItem.label} component={Link} to={navItem.href} size="lg" className={classes.link}>
+                    {navItem.label}
+                  </Text>
+                );
+              })}
             </Group>
             <Group spacing="md" style={styles.connector} noWrap>
               <ActionIcon radius="lg" className={classes.chain}>
