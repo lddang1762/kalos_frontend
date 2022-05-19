@@ -5,7 +5,8 @@ const styles = (theme: MantineTheme): CSSObject => ({
   // display: "flex",
   // flexDirection: "column",
   // alignItems: "center",
-  paddingTop: "15px",
+  paddingTop: 15,
+  paddingBottom: 50,
 });
 
 export default function Page({ children }: any) {

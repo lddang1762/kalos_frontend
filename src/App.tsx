@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PageWrapper from "./components/layout/PageWrapper";
 import Home from "./views/Home";
 import Dashboard from "./views/Dashboard";
+import CreatePortfolio from "./views/CreatePortfolio/CreatePortfolio";
+
 import Trade from "./views/Trade";
 import Stake from "./views/Stake";
 import Assets from "./views/Assets";
@@ -15,6 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/create" element={<CreatePortfolio />} />
+
           <Route path="/trade" element={<Trade />} />
           <Route path="/stake" element={<Stake />} />
           <Route path="/assets" element={<Assets />} />

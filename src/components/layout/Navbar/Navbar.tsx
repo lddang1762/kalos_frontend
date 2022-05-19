@@ -113,7 +113,7 @@ export default function Navbar() {
         }}
       >
         {(styles) => (
-          <Container size="xl" className={classes.flex}>
+          <Container fluid className={classes.flex}>
             <Box component={Link} to="/" className={classes.logo} style={styles.logo}>
               <Image src={logo} height={40} width={40} />
               <Text mx={"sm"} size="xl" className={classes.label}>
