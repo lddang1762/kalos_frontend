@@ -23,9 +23,8 @@ export default function ExchangeGrid({ exchanges, onSelect }: ExchangeGridProps)
     <Box component={motion.div} variants={parent} initial="hidden" animate="show">
       <SimpleGrid cols={4}>
         {exchanges.map((item) => (
-          <UnstyledButton component={motion.div} variants={child} onClick={onSelect}>
+          <UnstyledButton key={item} component={motion.div} variants={child} onClick={onSelect}>
             <Avatar
-              key={item}
               src={null}
               color="red"
               radius="sm"
