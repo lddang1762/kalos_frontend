@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, createStyles, TextInputProps } from "@mantine/core";
+import { PasswordInput, PasswordInputProps, createStyles } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -14,7 +14,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function StyledInput(props: TextInputProps & React.RefAttributes<HTMLInputElement>) {
+export default function StyledPasswordInput(props: PasswordInputProps & React.RefAttributes<HTMLInputElement>) {
   const { classes } = useStyles();
-  return <TextInput classNames={classes} {...props} />;
+  return <PasswordInput classNames={classes} {...props} />;
 }

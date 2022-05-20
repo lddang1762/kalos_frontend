@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import { MantineProvider, ColorSchemeProvider, ColorScheme, MantineThemeOverride } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 
@@ -19,6 +19,7 @@ const lightTheme: MantineThemeOverride = {
       "#5185EC",
       "#5185EC",
     ],
+    secondary: ["#5CCCD6"],
     accent: [
       "#ffb624",
       "#ffb624",
@@ -43,9 +44,10 @@ const lightTheme: MantineThemeOverride = {
       "#ECF6FD",
       "#ECF6FD",
     ],
+    light2: ["#5185EC"],
     medium: ["#DBE5FB"],
     paper: ["#ECF6FD"],
-    paper2: ["#ddebf8"],
+    paper2: ["#DBE5FB"],
   },
   primaryColor: "primary",
   radius: { xs: 4, sm: 8, md: 12, lg: 16, xl: 20 },
@@ -71,6 +73,7 @@ const darkTheme: MantineThemeOverride = {
       "#ECF6FD",
       "#ECF6FD",
     ],
+    secondary: ["#5CCCD6"],
     primary: [
       "#6c92e0",
       "#6c92e0",
@@ -107,9 +110,10 @@ const darkTheme: MantineThemeOverride = {
       "#576277",
       "#576277",
     ],
+
     medium: ["#DBE5FB"],
     paper: ["#263146"],
-    paper2: ["#1e2639"],
+    paper2: ["#313D54"],
   },
   primaryColor: "primary",
   radius: { xs: 4, sm: 8, md: 12, lg: 16, xl: 20 },

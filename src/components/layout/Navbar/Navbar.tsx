@@ -64,7 +64,7 @@ const useStyles = createStyles((theme) => ({
     color: theme.colors.primary,
     boxShadow: `0px 3px 0 0 rgb(0 0 0 / 10%)`,
   },
-  connectButton: { borderRadius: theme.radius.xl },
+  connectButton: { borderRadius: theme.radius.xl, height: 32 },
 }));
 
 const logoTransition: MantineTransition = {
@@ -103,7 +103,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <Header height={80} p="md" className={classes.header}>
+    <Header className={classes.header} height={56} p="md">
       <GroupedTransition
         mounted={loaded}
         transitions={{
@@ -113,27 +113,27 @@ export default function Navbar() {
         }}
       >
         {(styles) => (
-          <Container fluid className={classes.flex}>
-            <Box component={Link} to="/" className={classes.logo} style={styles.logo}>
-              <Image src={logo} height={40} width={40} />
-              <Text mx={"sm"} size="xl" className={classes.label}>
+          <Container className={classes.flex} fluid>
+            <Box className={classes.logo} component={Link} to="/" style={styles.logo}>
+              <Image src={logo} height={32} width={32} />
+              <Text className={classes.label} mx="sm" size="lg">
                 KALOS
               </Text>
             </Box>
             <Group spacing={40} style={styles.items} noWrap>
               {navItems.map((navItem) => {
                 return (
-                  <Text key={navItem.label} component={Link} to={navItem.href} size="lg" className={classes.link}>
+                  <Text className={classes.link} key={navItem.label} component={Link} to={navItem.href} size="md">
                     {navItem.label}
                   </Text>
                 );
               })}
             </Group>
-            <Group spacing="md" style={styles.connector} noWrap>
-              <ActionIcon radius="lg" className={classes.chain}>
-                <LinkIcon size={20} className={classes.chainIcon} />
+            <Group spacing="sm" style={styles.connector} noWrap>
+              <ActionIcon className={classes.chain} radius="lg">
+                <LinkIcon className={classes.chainIcon} size={20} />
               </ActionIcon>
-              <Button variant="white" size="md" className={classes.connectButton} onClick={openContextModal}>
+              <Button className={classes.connectButton} variant="white" px="lg" onClick={openContextModal}>
                 Log In
               </Button>
             </Group>

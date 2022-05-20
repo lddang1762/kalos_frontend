@@ -12,25 +12,25 @@ import ConfirmConfig from "./components/ReviewConfig";
 
 const useStyles = createStyles((theme) => ({
   root: {},
-  steps: { marginBottom: 50 },
+  steps: { marginBottom: 32 },
   stepIcon: {
     borderWidth: 3,
     borderRadius: "50%",
     borderColor: theme.colorScheme === "light" ? theme.colors.medium : theme.colors.gray[6],
     backgroundColor: theme.white,
     color: theme.colors.primary,
-    fontSize: "2rem",
+    fontSize: theme.fontSizes.lg,
   },
   stepLabel: {
     fontSize: theme.fontSizes.lg,
     fontWeight: "bold",
   },
   stepDescription: {
-    fontSize: theme.fontSizes.md,
+    fontSize: theme.fontSizes.sm,
     color: theme.colors.gray[6],
   },
   separator: {
-    height: "0.2rem",
+    height: 3,
     borderRadius: theme.radius.sm,
     backgroundColor: theme.colorScheme === "light" ? theme.colors.medium : theme.colors.gray[6],
   },
@@ -40,7 +40,7 @@ export default function CreatePortfolio() {
   const { classes } = useStyles();
   const [step, setStep] = useState(0);
   const [canContinue, setCanContinue] = useState(false);
-  const pages = [1, 2, 3, 4];
+  const pages = [1, 2, 3, 4, 5, 6];
 
   const handleBackwardNav = () => {
     setStep((val) => val - 1);
@@ -86,9 +86,8 @@ export default function CreatePortfolio() {
       <Stepper
         classNames={classes}
         active={step}
-        iconSize={70}
-        radius={30}
-        completedIcon={<Check size={40} strokeWidth={3} stroke="white" />}
+        iconSize={48}
+        completedIcon={<Check size={28} strokeWidth={3} stroke="white" />}
       >
         <Stepper.Step label="Step 1" description="Select your exchange" allowStepSelect>
           <ExchangeSelect onStepComplete={setCanContinue} />
@@ -96,10 +95,13 @@ export default function CreatePortfolio() {
         <Stepper.Step label="Step 2" description="Grant Access">
           <APIConfig />
         </Stepper.Step>
-        <Stepper.Step label="Step 3" description="Initial Configuration">
+        <Stepper.Step label="Step 3" description="Initial Allocation">
           <PortfolioConfig />
         </Stepper.Step>
-        <Stepper.Step label="Step 4" description="Review and Confirm">
+        <Stepper.Step label="Step 4" description="Portfolio Configuration">
+          <ConfirmConfig />
+        </Stepper.Step>
+        <Stepper.Step label="Step 5" description="Review and Confirm">
           <ConfirmConfig />
         </Stepper.Step>
       </Stepper>

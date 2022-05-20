@@ -20,7 +20,11 @@ export default function ExchangeSelect({ onStepComplete }) {
           </Center>
         </Container>
       </Container>
-      <Divider orientation="vertical" size="sm" sx={{ height: "auto" }} />
+      <Divider
+        orientation="vertical"
+        size="sm"
+        sx={{ height: "auto", borderColor: theme.colorScheme === "light" ? theme.colors.medium : theme.colors.gray[7] }}
+      />
 
       <Container px={0} m={0}>
         <Center>
