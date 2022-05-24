@@ -24,7 +24,7 @@ export default function PoolInputModal({ opened, onClose, ...props }: ModalProps
           </Group>
           <Group noWrap>
             <CurrencyIcon mx="md" />
-            <NumericalInput />
+            <NumericalInput sx={{ width: "100%" }} />
           </Group>
           <Container py="lg">
             <Center>
@@ -42,7 +42,7 @@ export default function PoolInputModal({ opened, onClose, ...props }: ModalProps
           </Group>
           <Group noWrap>
             <CurrencyIcon mx="md" />
-            <NumericalInput />
+            <NumericalInput sx={{ width: "100%" }} />
           </Group>
         </StyledContainer>
         <StyledContainer style={{ maxWidth: 700 }}>

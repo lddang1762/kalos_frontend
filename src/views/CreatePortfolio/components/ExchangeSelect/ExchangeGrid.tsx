@@ -21,7 +21,13 @@ interface ExchangeGridProps {
 export default function ExchangeGrid({ exchanges, onSelect }: ExchangeGridProps) {
   return (
     <Box component={motion.div} variants={parent} initial="hidden" animate="show">
-      <SimpleGrid cols={4}>
+      <SimpleGrid
+        cols={4}
+        breakpoints={[
+          { maxWidth: 980, cols: 3, spacing: "md" },
+          { maxWidth: 600, cols: 2, spacing: "sm" },
+        ]}
+      >
         {exchanges.map((item) => (
           <UnstyledButton key={item} component={motion.div} variants={child} onClick={onSelect}>
             <Avatar

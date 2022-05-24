@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, createStyles, TextInputProps } from "@mantine/core";
+import { NumberInput, createStyles, NumberInputProps } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   input: {
@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function StyledInput(props: TextInputProps & React.RefAttributes<HTMLInputElement>) {
+export default function StyledNumberInput(props: NumberInputProps & React.RefAttributes<HTMLInputElement>) {
   const { classes } = useStyles();
-  return <TextInput classNames={classes} {...props} />;
+  return <NumberInput classNames={classes} {...props} />;
 }
