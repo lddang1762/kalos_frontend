@@ -54,7 +54,11 @@ export default function CreatePortfolio() {
 
   const renderNavButtons = () => {
     return (
-      <Container fluid mt={100} sx={{ display: "flex", justifyContent: "space-around" }}>
+      <Container
+        fluid
+        mt={100}
+        sx={{ display: "flex", justifyContent: "space-around", position: "sticky", bottom: 20 }}
+      >
         <Center>
           {step === 0 ? (
             <Button component={Link} to="/dashboard" variant="outline" size="xl">
@@ -89,21 +93,24 @@ export default function CreatePortfolio() {
         iconSize={48}
         completedIcon={<Check size={28} strokeWidth={3} stroke="white" />}
       >
-        <Stepper.Step label="Step 1" description="Select your exchange" allowStepSelect>
+        <Stepper.Step label="Step 1" description="Select your exchange">
           <ExchangeSelect onStepComplete={setCanContinue} />
         </Stepper.Step>
         <Stepper.Step label="Step 2" description="Grant Access">
           <APIConfig />
         </Stepper.Step>
         <Stepper.Step label="Step 3" description="Initial Allocation">
-          <PortfolioConfig />
+          <InitialAllocation />
         </Stepper.Step>
         <Stepper.Step label="Step 4" description="Portfolio Configuration">
-          <ConfirmConfig />
+          <PortfolioConfig />
         </Stepper.Step>
         <Stepper.Step label="Step 5" description="Review and Confirm">
           <ConfirmConfig />
         </Stepper.Step>
+        <Stepper.Completed>
+          <Container>You're all set!</Container>
+        </Stepper.Completed>
       </Stepper>
 
       {renderNavButtons()}

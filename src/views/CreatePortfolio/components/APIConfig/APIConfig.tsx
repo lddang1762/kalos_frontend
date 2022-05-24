@@ -1,30 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Container, ActionIcon, Box, Text, Group, Stack, Popover, useMantineTheme, createStyles } from "@mantine/core";
-import { QuestionMark } from "tabler-icons-react";
+import { QuestionMark, ClipboardPlus } from "tabler-icons-react";
 
 import StyledContainer from "../../../../components/layout/StyledContainer";
 import StyledInput from "../../../../components/Input/StyledInput";
 import StyledPasswordInput from "../../../../components/Input/StyledPasswordInput";
-
-const useStyles = createStyles((theme) => ({
-  root: {},
-}));
-
-const usePopoverStyles = createStyles((theme) => ({
-  root: {},
-}));
+import ClipboardIcon from "./ClipboardIcon";
 
 export default function APIConfig() {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+  const [APIKey, setAPIKey] = useState("");
+  const [SecretKey, setSecretKey] = useState("");
+
+  const handleAPIChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAPIKey(e.currentTarget.value);
+  };
+  const handleSecretChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSecretKey(e.currentTarget.value);
+  };
+  const handleAPIPaste = async () => {
+    setAPIKey(await navigator.clipboard.readText());
+  };
+  const handleSecretPaste = async () => {
+    setSecretKey(await navigator.clipboard.readText());
+  };
 
   return (
     <StyledContainer fluid>
       <Group align="flex-start">
         <Stack p="md" spacing="xl" sx={{ width: "60%" }}>
-          <StyledInput size="lg" label="Selected Exchange" labelProps={{ style: { fontSize: 20 } }} />
-          <StyledInput size="lg" label="API Key" labelProps={{ style: { fontSize: 20 } }} />
-          <StyledPasswordInput size="lg" label="Secret Key" labelProps={{ style: { fontSize: 20 } }} />
+          <StyledInput label="Selected Exchange" labelProps={{ style: { fontSize: theme.fontSizes.md } }} radius="sm" />
+          <StyledInput
+            value={APIKey}
+            label="API Key"
+            labelProps={{ style: { fontSize: theme.fontSizes.md } }}
+            radius="sm"
+            rightSection={<ClipboardIcon onClick={handleAPIPaste} />}
+            onChange={handleAPIChange}
+          />
+          <StyledPasswordInput
+            value={SecretKey}
+            label="Secret Key"
+            labelProps={{ style: { fontSize: theme.fontSizes.md } }}
+            radius="sm"
+            rightSection={<ClipboardIcon onClick={handleSecretPaste} />}
+            onChange={handleSecretChange}
+          />
         </Stack>
 
         <Container p="md" mr={0} fluid>
