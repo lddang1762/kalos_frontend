@@ -1,6 +1,8 @@
-import React, { useState, useRef } from "react";
-import { Container, ActionIcon, Box, Text, Group, Stack, Popover, useMantineTheme, createStyles } from "@mantine/core";
-import { QuestionMark, ClipboardPlus } from "tabler-icons-react";
+import React, { useState } from "react";
+import { Container, ActionIcon, Box, Text, Group, Stack, useMantineTheme, Anchor } from "@mantine/core";
+import { QuestionMark } from "tabler-icons-react";
+
+import fetchExchangeAPIDoc from "../../hooks/fetchExchangeAPIDoc";
 
 import StyledContainer from "../../../../components/layout/StyledContainer";
 import StyledInput from "../../../../components/Input/StyledInput";
@@ -9,9 +11,9 @@ import ClipboardIcon from "./ClipboardIcon";
 
 export default function APIConfig() {
   const theme = useMantineTheme();
-  const [opened, setOpened] = useState(false);
   const [APIKey, setAPIKey] = useState("");
   const [SecretKey, setSecretKey] = useState("");
+  const apiDocURL = fetchExchangeAPIDoc();
 
   const handleAPIChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAPIKey(e.currentTarget.value);
@@ -52,38 +54,22 @@ export default function APIConfig() {
         <Container p="md" mr={0} fluid>
           <Group position="right">
             <Text color={theme.colors.secondary[0]}>How to generate API Keys</Text>
-            <Popover
-              opened={opened}
-              onClose={() => setOpened(false)}
-              target={
-                <ActionIcon
-                  sx={{
-                    height: 64,
-                    width: 64,
+            <Anchor href={apiDocURL} target="_blank" rel="nofollow noopener">
+              <ActionIcon
+                sx={{
+                  height: 48,
+                  width: 48,
+                  backgroundColor: theme.colors.secondary,
+                  borderRadius: "50%",
+                  ":hover": {
                     backgroundColor: theme.colors.secondary,
-                    borderRadius: "50%",
-                    ":hover": {
-                      backgroundColor: theme.colors.secondary,
-                    },
-                  }}
-                  onClick={() => setOpened((o) => !o)}
-                >
-                  <QuestionMark size={32} color={theme.white} />
-                </ActionIcon>
-              }
-              styles={{
-                popover: { backgroundColor: theme.colors.paper2, color: theme.colors.dark },
-                arrow: { backgroundColor: theme.colors.paper2, border: "none" },
-                body: { border: "none" },
-              }}
-              width={300}
-              position="bottom"
-              placement="end"
-              withArrow
-            >
-              <Text>Log into your selected exchange and navigate to your profile.</Text>
-              <Text>Locate the API related tab/page and follow your exchange's instructions.</Text>
-            </Popover>
+                  },
+                }}
+                onClick={() => null}
+              >
+                <QuestionMark size={32} strokeWidth={2.5} color={theme.white} />
+              </ActionIcon>
+            </Anchor>
           </Group>
         </Container>
       </Group>
