@@ -1,6 +1,13 @@
 import React from "react";
 import { ContextModalProps, ModalsProvider } from "@mantine/modals";
-import { Text, Button } from "@mantine/core";
+import { Text, Button, createStyles } from "@mantine/core";
+import ListSelect from "../components/Modals/ListSelect";
+
+const useStyles = createStyles((theme) => ({
+  header: { display: "none" },
+  modal: { backgroundColor: theme.white },
+  inner: { backdropFilter: "blur(3px)" },
+}));
 
 const Login = ({ context, id, innerProps }: ContextModalProps) => (
   <>
@@ -15,5 +22,14 @@ const Login = ({ context, id, innerProps }: ContextModalProps) => (
 );
 
 export default function ModalProvider({ children }) {
-  return <ModalsProvider modals={{ login: Login }}>{children}</ModalsProvider>;
+  const { classes } = useStyles();
+
+  return (
+    <ModalsProvider
+      modals={{ login: Login, assets: ListSelect }}
+      modalProps={{ classNames: classes, overlayColor: "transparent" }}
+    >
+      {children}
+    </ModalsProvider>
+  );
 }
