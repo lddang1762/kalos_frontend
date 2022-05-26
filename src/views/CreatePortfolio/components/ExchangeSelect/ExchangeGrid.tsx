@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { Box, UnstyledButton, Avatar, SimpleGrid } from "@mantine/core";
+import { Box, Center, Text, UnstyledButton, Avatar, SimpleGrid } from "@mantine/core";
 
 const parent: Variants = {
   show: {
@@ -29,18 +29,29 @@ export default function ExchangeGrid({ exchanges, onSelect }: ExchangeGridProps)
         ]}
       >
         {exchanges.map((item) => (
-          <UnstyledButton key={item} component={motion.div} variants={child} onClick={onSelect}>
-            <Avatar
-              src={null}
-              color="red"
-              radius="sm"
-              size={64}
+          <Box
+            sx={{
+              ":hover": { transform: "translateY(-0.5rem) " },
+              transition: "transform 0.1s linear",
+            }}
+          >
+            <UnstyledButton
+              key={item}
+              component={motion.div}
+              variants={child}
+              onClick={onSelect}
               sx={{
-                ":hover": { transform: "translateY(-0.5rem) " },
-                transition: "transform 0.1s linear",
+                width: 78,
               }}
-            />
-          </UnstyledButton>
+            >
+              <Center>
+                <Avatar src={null} color="red" radius="sm" size={64} sx={{}} />
+              </Center>
+              <Text align="center" sx={{ overflowWrap: "anywhere" }}>
+                NAME
+              </Text>
+            </UnstyledButton>
+          </Box>
         ))}
       </SimpleGrid>
     </Box>
