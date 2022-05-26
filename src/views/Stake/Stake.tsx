@@ -16,7 +16,7 @@ import { Search, Flame, Percentage, Businessplan } from "tabler-icons-react";
 import Page from "../../components/layout/Page";
 import StyledContainer from "../../components/layout/StyledContainer";
 import PoolCard from "../../components/Trade/PoolCard";
-import PoolInputModal from "../../components/Modals/PoolInputModal";
+import PoolInputModal from "../../components/Modals/Pools/PoolInputModal";
 
 const useStyles = createStyles((theme) => ({
   circle: {

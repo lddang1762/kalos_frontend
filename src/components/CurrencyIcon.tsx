@@ -11,7 +11,13 @@ export default function CurrencyIcon({ size = 64, symbol, ...props }: IconProps)
   const src = getIconURL(symbol);
   return (
     <Center
-      sx={(theme) => ({ backgroundColor: theme.colors.light, borderRadius: "100%", minWidth: size, height: size })}
+      sx={(theme) => ({
+        backgroundColor: theme.colors.light,
+        borderRadius: "100%",
+        minWidth: size,
+        maxWidth: size,
+        height: size,
+      })}
       {...props}
     >
       <Image src={src} height={0.5 * size} width={0.5 * size} />

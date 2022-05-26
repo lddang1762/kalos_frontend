@@ -28,7 +28,7 @@ export default function ExchangeGrid({ exchanges, onSelect }: ExchangeGridProps)
           { maxWidth: 600, cols: 2, spacing: "sm" },
         ]}
       >
-        {exchanges.map((item) => (
+        {exchanges.map((item, id) => (
           <Box
             sx={{
               ":hover": { transform: "translateY(-0.5rem) " },
@@ -36,7 +36,7 @@ export default function ExchangeGrid({ exchanges, onSelect }: ExchangeGridProps)
             }}
           >
             <UnstyledButton
-              key={item}
+              key={id}
               component={motion.div}
               variants={child}
               onClick={onSelect}

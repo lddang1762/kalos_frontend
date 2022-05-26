@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from "react";
 import { Container, Text, Button, Collapse, Box, RingProgress, Title, createStyles } from "@mantine/core";
-import StyledCard from "../layout/StyledCard";
+import StyledCard from "../../layout/StyledCard";
 import { ChevronLeft, ChevronRight, Star } from "tabler-icons-react";
-import CurrencyIcon from "../CurrencyIcon";
+import CurrencyIcon from "../../CurrencyIcon";
 
 const useStyles = createStyles((theme) => ({
   flex: { display: "flex", alignItems: "center" },
