@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NumberInput, createStyles, NumberInputProps } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
@@ -6,12 +6,20 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.light,
     borderColor: theme.colors.light,
     "::placeholder": {
-      opacity: 0.7,
+      opacity: theme.colorScheme === "light" ? 0.7 : 0.3,
     },
   },
 }));
 
 export default function StyledNumberInput(props: NumberInputProps & React.RefAttributes<HTMLInputElement>) {
   const { classes } = useStyles();
-  return <NumberInput classNames={classes} {...props} />;
+  const inputRegex = RegExp(`^[0-9]*(?:[.,])?[0-9]{0,18}$`);
+  const [inputVal, setVal] = useState<number | undefined>();
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!inputRegex.test(e.currentTarget.value + e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  return <NumberInput classNames={classes} value={inputVal} {...props} onKeyPress={handleKeyPress} />;
 }

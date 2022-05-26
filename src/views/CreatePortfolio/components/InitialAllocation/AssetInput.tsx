@@ -6,11 +6,13 @@ import CurrencyIcon from "../../../../components/CurrencyIcon";
 
 interface AssetInputProps {
   token: any;
+  max: number;
+  color?: string;
   onRemove: Dispatch<any>;
   hideControls?: boolean;
 }
 
-export default function AssetInput({ token, onRemove, hideControls = false }: AssetInputProps) {
+export default function AssetInput({ token, max, color, onRemove, hideControls = false }: AssetInputProps) {
   const theme = useMantineTheme();
   const { hovered, ref } = useHover();
 
@@ -25,7 +27,7 @@ export default function AssetInput({ token, onRemove, hideControls = false }: As
           justifyContent: "center",
           minWidth: theme.fontSizes.xs,
           height: theme.fontSizes.xs,
-          backgroundColor: hovered ? "gray" : "red",
+          backgroundColor: hovered ? "red" : color ?? theme.colors.primary[0],
           borderRadius: "50%",
           color: "white",
           cursor: "pointer",
@@ -39,7 +41,7 @@ export default function AssetInput({ token, onRemove, hideControls = false }: As
       <Title order={4} ml={-8} mr="lg" sx={{ width: 35 }}>
         {token.symbol}
       </Title>
-      <StyledNumberInput radius="sm" hideControls={hideControls} />
+      <StyledNumberInput radius="sm" hideControls={hideControls} min={1} max={max} />
       <Text size="md" sx={{ opacity: 0.7 }}>
         ~$0
       </Text>

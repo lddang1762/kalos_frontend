@@ -6,7 +6,7 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.light,
     borderColor: theme.colors.light,
     "::placeholder": {
-      opacity: 0.7,
+      opacity: theme.colorScheme === "light" ? 0.7 : 0.3,
     },
   },
 }));

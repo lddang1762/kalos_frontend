@@ -5,7 +5,7 @@ import StyledContainer from "../../components/layout/StyledContainer";
 import ModalWrapper from "../../components/ModalWrapper";
 import PoolInputCard from "./PoolInputCard";
 import CurrencyIcon from "../../components/CurrencyIcon";
-import NumericalInput from "../../components/Input/NumericalInput";
+import NumericalInput from "../Input/ControlledNumericalInput";
 
 export default function PoolInputModal({ opened, onClose, ...props }: ModalProps) {
   return (

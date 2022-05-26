@@ -8,7 +8,7 @@ interface InputProps extends TextInputProps, MantineStyleSystemProps {
   onMax?: (max: number | string) => void;
 }
 
-export default function NumericalInput({ withMax = true, maxValue, onMax, ...props }: InputProps) {
+export default function ControlledNumericalInput({ withMax = true, maxValue, onMax, ...props }: InputProps) {
   const inputRegex = RegExp(`^[0-9]*(?:[.,])?[0-9]{0,18}$`);
   const [inputVal, setVal] = useState("");
 
