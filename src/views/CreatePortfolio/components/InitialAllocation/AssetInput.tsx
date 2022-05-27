@@ -41,7 +41,7 @@ export default function AssetInput({ token, max, color, onRemove, hideControls =
       <Title order={4} ml={-8} mr="lg" sx={{ width: 35 }}>
         {token.symbol}
       </Title>
-      <StyledNumberInput radius="sm" hideControls={hideControls} min={1} max={max} />
+      <StyledNumberInput radius="sm" hideControls={hideControls} min={1} max={max} precision={2} />
       <Text size="md" sx={{ opacity: 0.7 }}>
         ~$0
       </Text>

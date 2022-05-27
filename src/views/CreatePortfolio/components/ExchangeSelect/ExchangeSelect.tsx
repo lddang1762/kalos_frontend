@@ -13,7 +13,7 @@ export default function ExchangeSelect({ onStepComplete }) {
         <StyledContainer fluid>
           <Center>
             <Title order={2} mb={50} sx={{ color: theme.colors.dark[9] }}>
-              Centralized Exchange (CEX)
+              Centralized Exchanges (CEX)
             </Title>
           </Center>
           <Center>
@@ -31,7 +31,7 @@ export default function ExchangeSelect({ onStepComplete }) {
         <StyledContainer fluid>
           <Center>
             <Title order={2} mb={50} sx={{ color: theme.colors.dark[9] }}>
-              Decentralized Exchange (DEX)
+              Decentralized Exchanges (DEX)
             </Title>
           </Center>
           <Center>

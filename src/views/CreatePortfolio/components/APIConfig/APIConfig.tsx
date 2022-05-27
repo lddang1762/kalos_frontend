@@ -29,7 +29,7 @@ export default function APIConfig() {
   };
 
   return (
-    <StyledContainer fluid>
+    <StyledContainer size="md">
       <Group align="flex-start">
         <Stack p="md" spacing="xl" sx={{ width: "60%" }}>
           <StyledInput label="Selected Exchange" labelProps={{ style: { fontSize: theme.fontSizes.md } }} radius="sm" />

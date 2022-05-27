@@ -21,5 +21,11 @@ export default function StyledNumberInput(props: NumberInputProps & React.RefAtt
     }
   };
 
-  return <NumberInput classNames={classes} value={inputVal} {...props} onKeyPress={handleKeyPress} />;
+  const handleChange = (value: number | undefined) => {
+    setVal(value);
+  };
+
+  return (
+    <NumberInput classNames={classes} value={inputVal} {...props} onKeyPress={handleKeyPress} onChange={handleChange} />
+  );
 }

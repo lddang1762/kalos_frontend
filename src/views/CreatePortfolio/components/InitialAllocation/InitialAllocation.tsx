@@ -12,15 +12,13 @@ import {
   useMantineTheme,
   createStyles,
   Title,
+  Tooltip,
 } from "@mantine/core";
 import { useModals } from "@mantine/modals";
 import { useListState } from "@mantine/hooks";
-import { ChevronLeft, ChevronRight, Plus } from "tabler-icons-react";
-import RingChart from "../../../Dashboard/components/Charts/RingChart";
+import { ChevronLeft, ChevronRight, Plus, Help } from "tabler-icons-react";
 import StyledContainer from "../../../../components/layout/StyledContainer";
 import StyledNumberInput from "../../../../components/Input/StyledNumberInput";
-import NumericalInput from "../../../../components/Input/ControlledNumericalInput";
-import StyledInput from "../../../../components/Input/StyledInput";
 import AssetInput from "./AssetInput";
 
 interface TokenData {
@@ -66,9 +64,9 @@ export default function InitialAllocation() {
   };
 
   return (
-    <StyledContainer fluid>
+    <StyledContainer size="lg">
       <Container fluid sx={{ display: "flex" }}>
-        <Stack pr="lg" spacing="md" sx={{ flexGrow: 2 }}>
+        <Stack pr="lg" spacing="xl" sx={{ flexGrow: 2 }}>
           <Group align="flex-end">
             <StyledNumberInput
               label="Initial Investment"
@@ -77,14 +75,20 @@ export default function InitialAllocation() {
               radius="sm"
               size="sm"
               sx={{ width: 200 }}
-              min={100}
+              min={1}
               max={balance}
+              precision={2}
               hideControls
             />
             <Text color="gray">{"(Balance: $10000)"}</Text>
           </Group>
-          <Text>Asset Ratio</Text>
-          <Group align="center" spacing={0} mt={-15} ml={-10}>
+          <Group spacing="sm" mb={-20}>
+            <Text>Asset Ratio</Text>
+            <Tooltip label="TODO" position="right" sx={{ display: "flex" }} withArrow>
+              <Help size={theme.fontSizes.sm} />
+            </Tooltip>
+          </Group>
+          <Group align="center" spacing={0} ml={-10}>
             <Box
               component="button"
               px={0}
@@ -123,7 +127,7 @@ export default function InitialAllocation() {
               <ChevronRight size={32} color="#5185EC" onClick={handleRatioIncrease} />
             </Box>
           </Group>
-          <Text mb={-10}>Stable Asset</Text>
+          <Text mb={-20}>Stable Asset</Text>
           <AssetInput
             token={stableAsset}
             max={100}
@@ -132,7 +136,7 @@ export default function InitialAllocation() {
             hideControls
           />
           <Divider />
-          <Text mb={-10}>Volatile Asset</Text>
+          <Text mb={-20}>Volatile Asset</Text>
 
           {volatileAssets.length ? (
             volatileAssets.map((asset, index) => (

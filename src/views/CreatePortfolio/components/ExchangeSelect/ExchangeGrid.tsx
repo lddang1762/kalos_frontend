@@ -30,13 +30,13 @@ export default function ExchangeGrid({ exchanges, onSelect }: ExchangeGridProps)
       >
         {exchanges.map((item, id) => (
           <Box
+            key={id}
             sx={{
               ":hover": { transform: "translateY(-0.5rem) " },
               transition: "transform 0.1s linear",
             }}
           >
             <UnstyledButton
-              key={id}
               component={motion.div}
               variants={child}
               onClick={onSelect}

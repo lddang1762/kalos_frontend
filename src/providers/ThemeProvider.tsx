@@ -159,6 +159,26 @@ export default function ThemeProvider({ children }) {
               ":checked::before": { borderColor: "white" },
             },
           }),
+          Tooltip: (theme, params) => ({
+            body: {
+              color: theme.colorScheme === "light" ? "white" : "black",
+              borderRadius: theme.radius.sm,
+            },
+          }),
+          Select: (theme, params) => ({
+            input: { backgroundColor: theme.colorScheme === "light" ? "white" : theme.colors.paper2[0] },
+            dropdown: {
+              borderColor: theme.colors.light[0],
+              backgroundColor: theme.colorScheme === "light" ? "white" : theme.colors.paper2[0],
+            },
+            selected: {
+              color: theme.colors.primary[0],
+              backgroundColor: theme.colors.light[0],
+            },
+            hovered: {
+              backgroundColor: `${theme.colors.light[0]}${theme.colorScheme === "light" ? 90 : 50}`,
+            },
+          }),
         }}
         theme={colorScheme === "dark" ? darkTheme : lightTheme}
       >
